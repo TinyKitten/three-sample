@@ -1,13 +1,29 @@
-import React from 'react';
-import { Canvas } from 'react-three-fiber';
-import Box from './components/Box';
+import React, { Suspense, useRef } from 'react';
+import { Canvas, useFrame } from 'react-three-fiber';
+import { Mesh } from 'three';
+import Text from './components/Text';
+
+const MovingText = () => {
+  const ref = useRef<Mesh>();
+  useFrame(({ clock }) => {
+    const time = clock.getElapsedTime();
+    ref.current!.position.y = Math.sin(time) * 3;
+  });
+  return (
+    <group ref={ref}>
+      <Text position={[-8, 4, 0]} st="野田一樹" size={1} />
+    </group>
+  );
+};
 
 const App = () => (
-  <Canvas>
+  <Canvas
+    camera={{ position: [0, 5, 20] }}
+  >
     <ambientLight />
-    <pointLight position={[10, 10, 10]} />
-    <Box position={[-1.2, 0, 0]} />
-    <Box position={[1.2, 0, 0]} />
+    <Suspense fallback={null}>
+      <MovingText />
+    </Suspense>
   </Canvas>
 );
 

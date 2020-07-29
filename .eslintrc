@@ -22,6 +22,8 @@
         "react-hooks"
     ],
     "rules": {
+        "react/prop-types": "warn",
+        "@typescript-eslint/no-unused-vars": "error",
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "warn",
         "react/jsx-filename-extension": [
@@ -51,7 +53,8 @@
             ".js",
             ".jsx",
             ".ts",
-            ".tsx"
+            ".tsx",
+            ".blob"
         ],
         "import/resolver": {
             "node": {
@@ -59,9 +62,10 @@
                     ".js",
                     ".jsx",
                     ".ts",
-                    ".tsx"
+                    ".tsx",
+                    ".blob"
                 ]
             }
         }
-    },
+    }
 }
